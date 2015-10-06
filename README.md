@@ -7,3 +7,16 @@ We will meet fridays at 10:00 am in room 225 in BioDiv
 We will read Numerical Ecology by Legendre and Legendre
 
 The repository will be updated with summaries and R-code as we go along. 
+
+#R
+
+CRAN Task View: Analysis of Ecological and Environmental Data:
+https://cran.r-project.org/web/views/Environmetrics.html
+
+CRAN Task View: Multivariate Statistics:
+https://cran.r-project.org/web/views/Multivariate.html
+
+CRAN Task View: Cluster Analysis & Finite Mixture Models
+https://cran.r-project.org/web/views/Cluster.html
+
+
