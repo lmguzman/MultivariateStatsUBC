@@ -5,7 +5,7 @@ Oct - 16
 # Matrix Algebra: A summary
 #Dimensional analysis in ecology
 Manny
-Andy
+Angie
 
 
 Oct - 23
@@ -29,7 +29,7 @@ Diana
 
 Nov -13 - ecoevo ~ might need to change 
 #Ordination in reduced space
-Angie
+Andy
 Coreen
 Santiago
 
