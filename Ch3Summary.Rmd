@@ -8,7 +8,7 @@ output: html_document
 # Fundamental principles
 
 - Dimensional analysis can be used to simplify equations into dimensionless variables. 
-- This type of analysis only works on dimensionally homogeous equations. -> have the same dimensions. 
+- This type of analysis only works on dimensionally homogeous equations -> have the same dimensions. 
 
 # Example:
 
@@ -25,3 +25,8 @@ The drag force F is a function of:
 - dynamic viscosity ![equation](http://www.sciweavers.org/tex2img.php?eq=%20%28%20%5Ceta%20%29%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
 
 ![equation](http://www.sciweavers.org/tex2img.php?eq=F%20%3D%20f%28V%2C%20D%2C%20%20%5Crho%20%2C%20%5Ceta%20%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+
+```{r, eval=FALSE}
+F = f(V,D,p,n)
+```
+
