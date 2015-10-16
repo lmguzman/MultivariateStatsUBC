@@ -18,4 +18,6 @@ Assumptions:
 - The immersed object is a smooth sphere.
 - The velocity of the current V is constant. 
 
+$F = f(\rho)$
+
 ![equation](http://www.sciweavers.org/tex2img.php?eq=F%20%3D%20f%28V%2C%20D%2C%20%20%5Crho%20%2C%20%5Ceta%20%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
