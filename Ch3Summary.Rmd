@@ -28,4 +28,4 @@ The drag force F is a function of:
 F = f(V,D,p,n)
 ```
 
-* Dimensional analysis allows one to find the form of the equation that relates F to the variables identified as governing the drag*
+*Dimensional analysis allows one to find the form of the equation that relates F to the variables identified as governing the drag*
