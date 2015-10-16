@@ -29,3 +29,15 @@ F = f(V,D,p,n)
 ```
 
 *Dimensional analysis allows one to find the form of the equation that relates F to the variables identified as governing the drag*
+
+Some of these variables can be combined to produce dimensionless products:
+
+eg. 
+
+```{r, eval=FALSE}
+Reynolds Number = Re = VLp/n  
+```
+and
+```{r, eval=FALSE}
+Newton Number = Ne = F/pL2V2
+```
