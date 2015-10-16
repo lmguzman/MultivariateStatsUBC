@@ -1,0 +1,19 @@
+---
+title: "Ch3 Dimensional Analysis In Ecology"
+author: "Melissa"
+date: "October 15, 2015"
+output: html_document
+---
+
+# Fundamental principles
+
+- Dimensional analysis can be used to simplify equations into dimensionless variables. 
+- This type of analysis only works on dimensionally homogeous equations. -> have the same dimensions. 
+
+# Example:
+
+Let's estimate the drag experimenced by an object immersed in a current.
+
+Assumptions:
+- The immersed object is a smooth sphere.
+- The velocity of the current V is constant. 
