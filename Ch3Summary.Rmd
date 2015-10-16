@@ -19,12 +19,13 @@ Assumptions:
 - The velocity of the current V is constant. 
 
 The drag force F is a function of:
-- velocity (V)
-- diameter of the sphere (D)
-- density of water `\rho`
-- dynamic viscosity `\etha`
+- velocity `(V)`
+- diameter of the sphere `(D)`
+- density of water `(p)`
+- dynamic viscosity `(n)`
 
 ```{r, eval=FALSE}
 F = f(V,D,p,n)
 ```
 
+* Dimensional analysis allows one to find the form of the equation that relates F to the variables identified as governing the drag*
