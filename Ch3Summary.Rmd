@@ -21,10 +21,8 @@ Assumptions:
 The drag force F is a function of:
 - velocity (V)
 - diameter of the sphere (D)
-- density of water ![equation](http://www.sciweavers.org/tex2img.php?eq=%20%28%5Crho%29%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
-- dynamic viscosity ![equation](http://www.sciweavers.org/tex2img.php?eq=%20%28%20%5Ceta%20%29%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
-
-![equation](http://www.sciweavers.org/tex2img.php?eq=F%20%3D%20f%28V%2C%20D%2C%20%20%5Crho%20%2C%20%5Ceta%20%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+- density of water `\rho`
+- dynamic viscosity `\etha`
 
 ```{r, eval=FALSE}
 F = f(V,D,p,n)
