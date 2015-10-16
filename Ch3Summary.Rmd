@@ -17,3 +17,5 @@ Let's estimate the drag experimenced by an object immersed in a current.
 Assumptions:
 - The immersed object is a smooth sphere.
 - The velocity of the current V is constant. 
+
+$F = f(V,D,p,n)$
