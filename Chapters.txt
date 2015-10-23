@@ -3,58 +3,62 @@
 
 Oct - 16
 # Matrix Algebra: A summary
-#Dimensional analysis in ecology
 Manny
-Melissa
-
 
 Oct - 23
+#Dimensional analysis in ecology
+Melissa
+
+Oct - 30
 #Multidimensional quantitative data
-#Multidimensional semiquantitative data
-### From with R: Exploratory data analysis
 Mark
 Kat
 
-Oct - 30
-#Multidimensional qualitative data
-#Ecological resemblance
-### from with R: association and matrices
+Nov - 6
+#Multidimensional semiquantitative data
+### From with R: Exploratory data analysis
 Sean
 Norah
 
-Nov - 6
+Nov - 13 - ecoevo ~ might need to change
+#Multidimensional qualitative data
+Phil
+Ritchard
+
+Nov - 20
+#Ecological resemblance
+### from with R: association and matrices
+
+Nov - 27 
 #Cluster analysis
 Julia
-Diana
+Kat
 
-Nov -13 - ecoevo ~ might need to change 
+Dec - 4
 #Ordination in reduced space
-Andy
 Coreen
 Santiago
 
-Nov -20
+Dec - 11
 #Interpretation of ecological structures
-Melissa 
 Jenny
+Melissa
 
-Nov - 27
+Jan - 
 #Canonical analysis 
-Philippe
-Joey
+Manny
+Phil
 
-
-Maybe next term?
-
-Dec - 4
+Jan - 
 #Ecological data series
 Rachel 
 Andrew Cook
 
-Dec - 11
+Jan - 
 #Spatial analysis
 Coreen
 
-Dec - 18
+Jan - 
 #Multiscale analysis 
 Melissa
+
