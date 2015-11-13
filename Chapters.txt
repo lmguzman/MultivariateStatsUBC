@@ -12,34 +12,37 @@ Melissa
 Oct - 30
 #Multidimensional quantitative data
 Mark
-Kat
 
 Nov - 6
+#Multidimensional quantitative data - part 2
+Kat
+
+Nov - 13
 #Multidimensional semiquantitative data
 ### From with R: Exploratory data analysis
 Sean
 Norah
 
-Nov - 13 - ecoevo ~ might need to change
+Nov - 20 
 #Multidimensional qualitative data
 Phil
 Ritchard
 
-Nov - 20
+Nov - 27
 #Ecological resemblance
 ### from with R: association and matrices
 
-Nov - 27 
+Dec - 4 
 #Cluster analysis
 Julia
 Kat
 
-Dec - 4
+Dec - 11
 #Ordination in reduced space
 Coreen
 Santiago
 
-Dec - 11
+Jan - 
 #Interpretation of ecological structures
 Jenny
 Melissa
