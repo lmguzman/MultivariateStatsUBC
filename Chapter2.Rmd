@@ -1,6 +1,5 @@
 ---
-title: "Ch2 Matrix Algebra: A Summary"
-date: "October 15, 2015"
+title: "Chapter 2 - Matrix Algebra: A Summary"
 output: pdf_document
 ---
 

@@ -1,0 +1,38 @@
+---
+title: "Chapter 4 - Multidimensional quantitative data"
+output: pdf_document
+---
+
+#Multidimensional Variables#
+
+Simple analysis of descriptors is not enough becase it doesn't take into account the covariance among descriptors. *Remember, objects are set a priori and descriptors "describe" each object*. Lets assume that in this case the objects are sites and the descriptors are species. 
+As the number of descriptors increases, the number of dimensions of the random variable increases. Therefore more axes are necessary to construct the space in which the objects are plotted. 
+
+This chapter focuses on the *dependence* among descriptors. 
+
+To sum up:
+
+1. The p descriptors in ecological data matrices are the pdimensions of a random variable "descriptors". As the number of species increases, so do the dimensions of the sites.
+2. The p descriptors (species) are not independent of one another. That's why we can't use unidimensional analysis.
+
+##Variance##
+
+Variance a measure of the dispersal of a random variable y around it's mean. ie. how much does a variable deviate from it's mean. 
+
+\begin{equation}
+s_{j}^2 = \frac{1}{n-1}\displaystyle\sum_{i = 1}^{n} (y_{ij} - \overline{y_{j}})^2
+\end{equation}
+
+##Covariance##
+
+Is the extension to two descriptors of variance. It measures the joint dispersion of two random variables $y_i$ and $y_k$ around their means. 
+
+\begin{equation}
+s_{jk} = \frac{1}{n-1}\displaystyle\sum_{i = 1}^{n} (y_{ij} - \overline{y_{j}})^2 (y_{ik} - \overline{y_{k}})^2
+\end{equation}
+
+When the covariance is positive it means that both descriptors have a positive relationship. A negative covariance means that the descripts have a negative relationship. 
+
+##Dispersion matrix $S$## 
+Contains the variances and covariances of the p descriptors. Therefore $S$ is an association matrix. All eigenvalues of S are positive or null. 
+Ideally, the matrix $S$ should be estimated from a number of observations n larger than the number of descriptors p. When $n \leq p$ then the matrix has null eigenvalues but usually the first few are not affected. 
