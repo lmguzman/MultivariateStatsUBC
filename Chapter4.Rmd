@@ -36,3 +36,20 @@ When the covariance is positive it means that both descriptors have a positive r
 ##Dispersion matrix $S$## 
 Contains the variances and covariances of the p descriptors. Therefore $S$ is an association matrix. All eigenvalues of S are positive or null. 
 Ideally, the matrix $S$ should be estimated from a number of observations n larger than the number of descriptors p. When $n \leq p$ then the matrix has null eigenvalues but usually the first few are not affected. 
+
+##Correlation matrix $R$##
+
+The covariance measures the joint dispersion of two random variables aorund their means. The correlation is defined as a measure of the dependence between two random variables $y_j$ and $y_k$. 
+Sometimes, descriptors don't have a common scale. For example when the descriptor or a site are two environmental variables and each have their own different units. In these cases, calculating covariances doesnt make sense, unless the descriptors are reduced to a common scale. This common scale standandizes the values to their standard normal distribution using: $z_i = \frac{y_i - \overline{y}}{s_y}$ where $\overline{y}$ is the mean and $s_y$ is the standard deviation of that descriptor. 
+
+The covariance (S) matrix of two standardized descriptors is the linear correlation. Therefore the correlation matrix is the dispersion matrix of the standardized variables. 
+
+Matrices S and R are related to each other by the diagonal matrix of the standard deviations of Y, simbolized by $D(\sigma)$.
+
+\begin{equation}
+\Sigma = D(\sigma) R D(\sigma)
+\end{equation}
+
+##Multinormal Distribution## 
+
+*Central limit theorem*: When a random variable results from several independent and additive effects, of which none has a dominat variance, then this variable ttends towards a normal distribution even if it's effects are not themselves normally distributed. 
