@@ -1,67 +1,41 @@
 ##Chapters
 
-
-Oct - 16
-# Matrix Algebra: A summary
-Manny
-
-Oct - 23
-#Dimensional analysis in ecology
-Melissa
-
-Oct - 30
-#Multidimensional quantitative data
-Mark
-
-Nov - 6
-#Multidimensional quantitative data - part 2
-Kat
-
-Nov - 13
-#Multidimensional semiquantitative data
-### From with R: Exploratory data analysis
-Sean
-Norah
-
-Nov - 20 
-#Multidimensional qualitative data
-Phil
-Ritchard
-
-Nov - 27
+Jan - 8
 #Ecological resemblance
 ### from with R: association and matrices
+Andrew
+MelissaS
 
-Dec - 4 
+Jan - 15
 #Cluster analysis
 Julia
 Kat
 
-Dec - 11
+Jan - 22
 #Ordination in reduced space
 Coreen
 Santiago
 
-Jan - 
+Jan - 29
 #Interpretation of ecological structures
 Jenny
 Melissa
 
-Jan - 
+Feb - 5
 #Canonical analysis 
 Manny
 Phil
 
-Jan - 
+Feb - 12 
 #Ecological data series
 Rachel 
 Andrew Cook
 
-Jan - 
+Feb - 19 
 #Spatial analysis
 Coreen
 
-Jan - 
+Feb - 26 
 #Multiscale analysis 
 Melissa
 
