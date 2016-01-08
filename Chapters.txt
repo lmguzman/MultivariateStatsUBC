@@ -11,28 +11,32 @@ Jan - 22
 Julia
 Kat
 
-Jan - 29
-#Ordination in reduced space
-
-
 Feb - 5
-#Interpretation of ecological structures
-Melissa
+#Ordination in reduced space
+Sean
+Joey
 
 Feb - 12 
+#Interpretation of ecological structures
+Melissa
+Kat
+
+Feb - 26
 #Canonical analysis 
 Phil
+Joey
 
-Feb - 19 
+Mar - 04
 #Ecological data series
 Rachel 
 Andrew Cook
 
-Feb - 26 
+Mar - 11
 #Spatial analysis
+Kat
+Rachel
 
-
-Mar - 04
+Mar - 18
 #Multiscale analysis 
 Melissa
-
+Andrew
