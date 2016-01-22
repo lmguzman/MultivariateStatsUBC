@@ -272,6 +272,12 @@ UPGMA = Unweighted pair-group method using Arithmetic averages
 dune_bray_UPGMA <- hclust(dune_bray, method="average")
 ```
 
+## UPGMA vs single linkage
+```{r}
+par(mfrow=c(1,2))
+plot(dune_bray_UPGMA, main = "UPGMA")
+plot(dune_bray_single, main = "Single linkage")
+```
 
 ## Differences among centroid clustering methods
 Sections 8.5.4 - 8.5.7
@@ -320,8 +326,7 @@ plot(spe.ch.ward)
 ## K-means 
 - non-hierarchical method
 - partition *n* objects into *k* clusters
-- linear method -not appropriate for raw species abundance with lots of zeroes.
-- can use the normalized species abundance. euclidean distance that is used in the k-means clustering
+- linear method -not appropriate for raw species abundance with lots of zeroes, but can transform data
 
 medoid = type object representing a cluster
 
@@ -348,19 +353,18 @@ Starting position can be:
 ```{r}
 
 dune_kmeans <- kmeans(dune_six_sites, centers=4, nstart=100)
-dune_kmeans <- kmeans(dune_six_sites, centers=4)
-dune_hellinger <- decostand(dune_six_sites,"hellinger")
 
-spe.KM.cascade <- cascadeKM(dune_hellinger, inf.gr=2, sup.gr=3, iter=100, criterion="ssi")
-plot(spe.KM.cascade, sortg=TRUE)
+dune_hellinger <- decostand(dune_six_sites,"hellinger")
+dune_KM_cascade <- cascadeKM(dune_hellinger, inf.gr=2, sup.gr=3, iter=100, criterion="ssi")
+plot(dune_KM_cascade, sortg=TRUE)
 ```
 
 
 ## K-means 
 ```{r}
-summary(spe.KM.cascade)
-spe.KM.cascade$results
-spe.KM.cascade$partition
+summary(dune_KM_cascade)
+dune_KM_cascade$results
+dune_KM_cascade$partition
 ```
 
 
@@ -408,10 +412,10 @@ mvpart(data.matrix(dune_bray) ~., dune_env_six)
 - connectedness within clusters and isolation of clusters
 
 Validation:
-  - plot using ordination and overlay clusters (coming next week?)
-  - compare various clustering algorithms
-  - before clustering test for uniform or unimodal distributions
-  
+
+- plot using ordination and overlay clusters (coming next week?)
+- compare various clustering algorithms
+
 
 ## Cluster algorithms in other applications
 

@@ -439,6 +439,15 @@ UPGMA = Unweighted pair-group method using Arithmetic averages
 dune_bray_UPGMA <- hclust(dune_bray, method="average")
 ```
 
+## UPGMA vs single linkage
+
+```r
+par(mfrow=c(1,2))
+plot(dune_bray_UPGMA, main = "UPGMA")
+plot(dune_bray_single, main = "Single linkage")
+```
+
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-23-1.png) 
 
 ## Differences among centroid clustering methods
 Sections 8.5.4 - 8.5.7
@@ -483,15 +492,14 @@ spe.ch.ward <- hclust(dune_bray, method="ward.D") ## also "ward.D2"
 plot(spe.ch.ward)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-23-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-24-1.png) 
 
 
 
 ## K-means 
 - non-hierarchical method
 - partition *n* objects into *k* clusters
-- linear method -not appropriate for raw species abundance with lots of zeroes.
-- can use the normalized species abundance. euclidean distance that is used in the k-means clustering
+- linear method -not appropriate for raw species abundance with lots of zeroes, but can transform data
 
 medoid = type object representing a cluster
 
@@ -518,20 +526,19 @@ Starting position can be:
 
 ```r
 dune_kmeans <- kmeans(dune_six_sites, centers=4, nstart=100)
-dune_kmeans <- kmeans(dune_six_sites, centers=4)
-dune_hellinger <- decostand(dune_six_sites,"hellinger")
 
-spe.KM.cascade <- cascadeKM(dune_hellinger, inf.gr=2, sup.gr=3, iter=100, criterion="ssi")
-plot(spe.KM.cascade, sortg=TRUE)
+dune_hellinger <- decostand(dune_six_sites,"hellinger")
+dune_KM_cascade <- cascadeKM(dune_hellinger, inf.gr=2, sup.gr=3, iter=100, criterion="ssi")
+plot(dune_KM_cascade, sortg=TRUE)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-24-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-25-1.png) 
 
 
 ## K-means 
 
 ```r
-summary(spe.KM.cascade)
+summary(dune_KM_cascade)
 ```
 
 ```
@@ -543,27 +550,27 @@ summary(spe.KM.cascade)
 ```
 
 ```r
-spe.KM.cascade$results
+dune_KM_cascade$results
 ```
 
 ```
 ##      2 groups   3 groups
 ## SSE 0.9341624 0.53009876
-## ssi 0.0606446 0.08172309
+## ssi 0.0606446 0.08725346
 ```
 
 ```r
-spe.KM.cascade$partition
+dune_KM_cascade$partition
 ```
 
 ```
 ##   2 groups 3 groups
-## 1        1        2
-## 2        1        1
-## 3        1        1
-## 4        1        1
-## 5        2        3
-## 6        2        3
+## 1        1        3
+## 2        1        2
+## 3        1        2
+## 4        1        2
+## 5        2        1
+## 6        2        1
 ```
 
 
@@ -610,7 +617,7 @@ summary(indval)
 heatmap(as.matrix(dune_bray))
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-27-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-28-1.png) 
 
 ## Multivariate regression tree (MRT)
 
@@ -624,7 +631,7 @@ dune_env_six <- head(dune.env)
 mvpart(data.matrix(dune_bray) ~., dune_env_six)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-29-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-30-1.png) 
 
 
 ## Cluster Statistics and validation
@@ -633,10 +640,10 @@ mvpart(data.matrix(dune_bray) ~., dune_env_six)
 - connectedness within clusters and isolation of clusters
 
 Validation:
-  - plot using ordination and overlay clusters (coming next week?)
-  - compare various clustering algorithms
-  - before clustering test for uniform or unimodal distributions
-  
+
+- plot using ordination and overlay clusters (coming next week?)
+- compare various clustering algorithms
+
 
 ## Cluster algorithms in other applications
 
