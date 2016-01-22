@@ -89,10 +89,6 @@ Can also visualize like a graph
 
 - use igraph
 
-```{r}
-summary(cars)
-```
-
 
 How does clustering result compare to original distance matrix?
 ========================================================
@@ -169,10 +165,3 @@ Multivariate regression tree (MRT)
 Cluster Statistics and validation
 ========================================================
 
-<<<<<<< HEAD
-=======
-
-```{r, echo=FALSE}
-plot(cars)
-```
->>>>>>> 78818848590980f196fa7384a19d095d5e4406a2
