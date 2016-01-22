@@ -169,3 +169,10 @@ Multivariate regression tree (MRT)
 Cluster Statistics and validation
 ========================================================
 
+<<<<<<< HEAD
+=======
+
+```{r, echo=FALSE}
+plot(cars)
+```
+>>>>>>> 78818848590980f196fa7384a19d095d5e4406a2
