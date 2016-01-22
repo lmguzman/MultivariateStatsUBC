@@ -1,0 +1,171 @@
+Chapter 8 Cluster analysis
+========================================================
+author: Julia and Kat
+date: 22 January 2016
+
+Intro
+========================================================
+
+Why use clustering?
+
+- Motivation
+- Type of data you would use
+- What you will get out of it
+
+Plan for today
+========================================================
+
+- Vocab
+- Types of clustering
+  - Single linkage agglomerative
+  - UGMA
+  - K-means
+- Comparing clustering results to original data
+- Species associations
+  - Indicator species analysis
+- Seriation
+- MRT?
+- Statistics and validation of clustering
+
+
+Vocabulary
+========================================================
+
+- a few important distinctions
+- etc. 
+
+Clustering using Single Linkage agglomeration
+========================================================
+
+- use dune data 
+- what is data set
+- what do we want to know?
+
+```{r}
+library(vegan)
+data(dune)
+```
+
+Dune data
+========================================================
+30 species at 20 sites. Meadow vegetation data from Dutch Dune Meadows.
+
+First 4 columns and first 6 rows of cover class data
+
+```{r}
+head(dune[1:4])
+```
+
+ref: Jongman, R.H.G, ter Braak, C.J.F & van Tongeren, O.F.R. (1987). Data Analysis in Community
+and Landscape Ecology. Pudoc, Wageningen.
+
+Step 1 : Distance matrix
+========================================================
+
+```{r}
+
+```
+
+- our old friend
+
+- show D
+
+Step 2 : Order D by pairs in lowest to highest distance
+========================================================
+
+
+Step 3: Make links between pairs 
+========================================================
+
+
+Step 4: Plot dendrodram 
+========================================================
+
+
+- plot
+
+Can also visualize like a graph
+========================================================
+
+- use igraph
+
+```{r}
+summary(cars)
+```
+
+
+How does clustering result compare to original distance matrix?
+========================================================
+
+
+- cophenetic matrix
+
+
+Sheppard-like diagram
+========================================================
+
+
+plot this
+
+Comparison of agglomerative linkage methods
+========================================================
+
+How does single linkage agglomeration compare to:
+- complete
+- intermediate
+
+
+
+Centroid clustering methods:
+========================================================
+- start with UPGMA
+- vocab
+- show matrix
+- show calculation
+- show how matrix collapses by row and column by step
+
+
+Differences among centroid clustering methods
+========================================================
+
+
+Ward's agglomerative clustering method
+========================================================
+
+- discuss squared error
+- matrix and calculations
+
+- Equations 8.5 and 8.6 important squared error and why
+
+
+K-means 
+========================================================
+
+vocab: medoid, local minimum, overall minimum
+- process
+- example calculations for dune dataset
+
+
+Indicator species analysis
+========================================================
+
+Description
+- basic equations
+- R code
+
+Seriation
+========================================================
+
+- explain origin in archaeology
+- heatmap() 
+
+
+Multivariate regression tree (MRT)
+========================================================
+
+??
+
+
+Cluster Statistics and validation
+========================================================
+
