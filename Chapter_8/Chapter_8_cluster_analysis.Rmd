@@ -1,0 +1,381 @@
+---
+title: "Cluster analysis"
+author: "Julia and Kat"
+date: "22 January 2016"
+output:
+ioslides_presentation:
+  widescreen: true
+  smaller: true
+fontsize: 10pt
+highlight: tango
+classoption: compress, aspectratio=169
+---
+
+# Chapter 8 Cluster analysis
+
+
+## Intro {.build}
+
+Why use clustering?
+
+- Motivation
+- Type of data you would use
+- What you will get out of it
+- different kinds of clustering: can be hard (either you are a or b) or can be fuzzy (you are somewhere between 0 and 1). 
+- does not test a hypothesis, but brings out hidden aspects of the data.
+
+## Plan for today
+
+- Vocab
+- Types of clustering
+- Single linkage agglomerative
+- UGMA
+- K-means
+- Comparing clustering results to original data
+- Species associations
+- Indicator species analysis
+- Seriation
+- MRT?
+- Statistics and validation of clustering
+
+
+## Vocabulary
+
+- a few important distinctions
+- types of clustering (8.4)
+  - Sequential vs. simultaneous
+  - Agglomeration vs. division
+  - Monothetic vs. polythetic methods
+  - Hierarchical vs non-hierachical
+  - constrained
+  - probabilistic vs. non-probabilistic
+
+## Clustering using Single Linkage agglomeration
+
+- hierarchical agglomerative clustering
+- aka nearest neighbour sorting
+- can be difficult to interpret in terms of partitions, but gradients are revealed quite clearly. 
+- two objects fuse when they are closest to each other
+
+- will use dune dataset from vegan package
+
+```{r}
+library(vegan)
+data(dune)
+```
+
+## Dune data
+
+30 species at 20 sites. Meadow vegetation data from Dutch Dune Meadows.
+
+For illustration purposes let's just use first 6 rows(sites) of cover class data
+
+```{r}
+dune_six_sites <- head(dune)
+dune_six_sites
+```
+
+ref: Jongman, R.H.G, ter Braak, C.J.F & van Tongeren, O.F.R. (1987). Data Analysis in Community
+and Landscape Ecology. Pudoc, Wageningen.
+
+## Step 1 : Distance matrix
+
+Calculate distance matrix (Chapter 7)
+
+```{r}
+dune_bray <- vegdist(dune_six_sites) ## defaul is Bray-Curtis
+dune_bray
+```
+
+
+## Step 2 : Order D by pairs in lowest to highest distance
+
+Get distance matrix into sets of pairs (links) of distances (like Fig 8.2)
+```{r}
+library(reshape2) ## need for melt()
+melt(as.matrix(dune_bray), varnames = c("row", "col")) # take distance matrix into "long" format
+
+```
+
+
+## Step 2 : Order D by pairs in lowest to highest distance
+
+```{r}
+## as.matrix() fills in upper triangle, so need to add a filtering bit ( in [] )
+## to avoid duplicates
+long_dune_dist <- melt(as.matrix(dune_bray),
+                       varnames = c("row", "col"))[melt(lower.tri(dune_bray))$value,]
+long_dune_dist
+```
+
+
+## Step 2 : Order D by pairs in lowest to highest distance
+
+sort the matrix by distance between pairs
+```{r}
+ordered_long_dune_dist <- long_dune_dist[order(long_dune_dist$value),]
+ordered_long_dune_dist
+```
+
+
+## Step 3: Make links between pairs 
+
+Clusters will be joined by pairs based on 
+So we did that reordering just so we could understand and anticipate what would happen
+
+If we go back to our distance matrix and use the clustering function
+```{r}
+dune_bray_single <- hclust(dune_bray, method="single")
+dune_bray_single
+```
+
+Object to be clustered is no more distant from the distance level 
+from *at least* one object already in cluster. 
+( We will talk later about how this is different from complete linkage)
+
+
+## Step 4: Plot dendrogram 
+
+Here is our dendrogram
+
+Shows topology, not all possible links
+```{r}
+plot(dune_bray_single)
+```
+
+
+## Can also visualize like a graph
+
+Like in figure 8.2
+- if we look at the pairs that occur at distances below 0.3
+```{r, warning=FALSE, message=FALSE}
+library(igraph)
+
+dune_ch_graph <- graph.adjacency(as.matrix(dune_bray) < 0.30,
+                                 mode="undirected",
+                                 weighted=TRUE)
+plot(dune_ch_graph)
+```
+
+## Can also visualize like a graph
+
+Simplify removes self-loops
+```{r, warning=FALSE, message=FALSE}
+plot(simplify(dune_ch_graph))
+```
+
+
+## Can also visualize like a graph
+
+```{r, warning=FALSE, message=FALSE}
+dune_ch_graph <- graph.adjacency(as.matrix(dune_bray) < 0.40,
+                                 mode="undirected",
+                                 weighted=TRUE)
+plot(simplify(dune_ch_graph))
+```
+
+## Can also visualize like a graph
+
+```{r, warning=FALSE, message=FALSE}
+dune_ch_graph <- graph.adjacency(as.matrix(dune_bray) < 0.50,
+                                 mode="undirected",
+                                 weighted=TRUE)
+plot(simplify(dune_ch_graph))
+```
+
+## Back to dendrogram
+
+```{r}
+plot(dune_bray_single)
+```
+
+## How does clustering result compare to original distance matrix?
+
+Cophenetic distance is distance where objects become members of same cluster
+```{r}
+dune_bray_single_coph <- cophenetic(dune_bray_single)
+dune_bray_single_coph
+
+```
+
+
+## How does clustering result compare to original distance matrix?
+```{r}
+cor(dune_bray, dune_bray_single_coph)
+```
+
+
+## Sheppard-like diagram
+
+
+```{r}
+plot(dune_bray, dune_bray_single_coph, xlab="", ylab="Cophenetic distance", asp=1,
+     main = c("Single linkage", paste("Cophenetic correlation", 
+                                      round(cor(dune_bray, dune_bray_single_coph), 
+                                            digits=2))))
+```
+
+
+## Comparison of agglomerative linkage methods
+
+### Complete
+How does single linkage agglomeration compare to:
+- complete linkage agglomerative clustering
+  - opposite to single linkage - "Furthest neighbour sorting"
+  - useful for identifying discontinuities in the data
+
+```{r}
+dune_bray_complete <- hclust(dune_bray, method="complete")
+par(mfrow=c(1,2))
+plot(dune_bray_complete,main = "Complete linkage")
+plot(dune_bray_single, main = "Single linkage")
+```
+
+
+## Comparison of agglomerative linkage methods
+
+### Intermediate
+How does single linkage agglomeration compare to:
+- intermediate linkage agglomerative clustering
+- object needs ot meet criteria to of a proportion of group to join the group
+
+
+```{r}
+
+```
+
+
+## Centroid clustering methods:
+
+
+## UPGMA - unweighted arithmetic average clustering
+UPGMA = Unweighted pair-group method using Arithmetic averages
+- lowest distance identifies next cluster to be formed
+- calculates average between an object and each of the cluster members
+```{r}
+dune_bray
+```
+
+So lowest distance is between row 4 and col 3. 0.27
+
+So they will become a pair 3-4 and the matrix will shrink. The average distance
+of the condensed rows will be taken
+```{r}
+dune_bray
+dune_bray_matrix <- as.matrix(dune_bray)
+
+
+pair_3_4 <- colSums(dune_bray_matrix[3:4,])/2
+
+row_add_dune_bray_matrix <- rbind(dune_bray_matrix[-3:-4,], pair_3_4)
+row_add_dune_bray_matrix
+
+pair_3_4 <- rowSums(row_add_dune_bray_matrix[,3:4])/2
+col_add_dune_bray_matrix <- cbind(row_add_dune_bray_matrix[,-3:-4], pair_3_4)
+
+col_add_dune_bray_matrix["pair_3_4", "pair_3_4"] <- 0.00
+as.dist(col_add_dune_bray_matrix)
+
+## now it is 5:6 that is the  
+pair_5_6 <- colSums(col_add_dune_bray_matrix[c("5","6"),])/2
+
+subset(col_add_dune_bray_matrix, !(rownames(col_add_dune_bray_matrix) %in% c("5", "6")))
+row_add_dune_bray_matrix2 <- rbind(subset(col_add_dune_bray_matrix, !(rownames(col_add_dune_bray_matrix) %in% c("5", "6"))), pair_5_6)
+row_add_dune_bray_matrix2
+
+pair_5_6 <- rowSums(row_add_dune_bray_matrix2 [,c("5","6")])/2
+col_add_dune_bray_matrix2 <- cbind(subset(row_add_dune_bray_matrix2, select =!(colnames(row_add_dune_bray_matrix2) %in% c("5", "6"))), pair_5_6)
+
+col_add_dune_bray_matrix2
+
+col_add_dune_bray_matrix2["pair_5_6", "pair_5_6"] <- 0.00
+as.dist(col_add_dune_bray_matrix2)
+
+```
+
+
+
+
+- start with UPGMA
+
+spe.ch.UPGMA <- hclust(spe.ch, method="average")
+
+- vocab
+- show matrix
+- show calculation
+- show how matrix collapses by row and column by step
+
+
+## Differences among centroid clustering methods
+
+
+
+## Ward's agglomerative clustering method
+
+```{r}
+spe.ch.ward <- hclust(dune_bray, method="ward.D")
+plot(spe.ch.ward)
+```
+
+- discuss squared error
+- matrix and calculations
+
+- Equations 8.5 and 8.6 important squared error and why
+
+
+## K-means 
+
+linear method-not appropriate for raw species abundance with lots of zeroes.
+-can use the normalized species abundance. And that goes in to the euclidean distance that is used in the k-means clustering
+
+```{r}
+spe.kmeans <- kmeans(dune_six_sites, centers=4, nstart=100)
+library(fpc)
+plotcluster(dune_six_sites, spe.kmeans$cluster)
+
+```
+
+vocab: medoid, local minimum, overall minimum
+- process
+- example calculations for dune dataset
+
+
+## Indicator species analysis
+
+Description
+- basic equations
+- R code
+
+```{r}
+ groups <-  cutree(dune_bray_single, k=2)
+
+library(indicspecies)
+ # Look for the indicator species
+ indval <- multipatt(dune_six_sites, groups)
+ indval
+ summary(indval)
+```
+
+
+## Seriation
+
+- explain origin in archaeology
+```{r}
+heatmap(as.matrix(dune_bray))
+```
+
+## Multivariate regression tree (MRT)
+
+```{r}
+ #install.packages("devtools")
+#devtools::install_github("cran/mvpart")
+library(mvpart)
+data("dune.env")
+dune_env_six <- head(dune.env)
+mvpart(data.matrix(dune_bray) ~., dune_env_six)
+```
+
+
+## Cluster Statistics and validation
+
+
