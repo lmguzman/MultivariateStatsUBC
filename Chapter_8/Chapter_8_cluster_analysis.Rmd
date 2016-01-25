@@ -9,6 +9,30 @@ output:
     keep_md: true 
 ---
 
+## Set-up
+
+If you want to run these analyses on your own computer you will need to load the following packages:
+
+```{r, warning=FALSE, message=FALSE}
+## if you need to install these packages you can run this:
+## install.packages(c("vegan", "reshape2", "igraph", "indicspecies", "devtools"))
+library(vegan)
+library(reshape2)
+library(igraph)
+library(indicspecies)
+## mvpart is hosted on github and can be installed
+## using this command: 
+## devtools::install_github("cran/mvpart")
+library(mvpart)
+```
+
+
+We will also briefly use the ```coldis()``` function from Chapter 7.
+```{r}
+source("../Chapter_7/coldiss.R")
+```
+
+
 ## Intro {.build}
 
 - Why use clustering?
@@ -19,7 +43,6 @@ output:
 - What you will get out of it
 - different kinds of clustering: can be hard (either you are a or b) or can be fuzzy (you are somewhere between 0 and 1). 
     - we will talk about hard clustering
-
 
 ## Plan for today
 
@@ -56,7 +79,7 @@ output:
 - will use dune dataset from vegan package
 
 ```{r, warning=FALSE, message=FALSE}
-library(vegan)
+## load dune dataset from vegan package
 data(dune)
 ```
 
@@ -85,7 +108,7 @@ dune_bray
 ## Step 1 : Distance matrix
 Check it out with ```coldiss()``` from last time.
 ```{r, warning=FALSE, message=FALSE}
-source("../Chapter_7/coldiss.R")
+## coldiss() from Chapter 7 
 coldiss(dune_bray)
 ```
 
@@ -93,7 +116,7 @@ coldiss(dune_bray)
 ## Step 2 : Order D by pairs in lowest to highest distance
 Get distance matrix into sets of pairs (links) of distances (like Fig 8.2)
 ```{r}
-library(reshape2) ## need for melt()
+## melt() from reshape2 package
 melt(as.matrix(dune_bray), varnames = c("row", "col")) # take distance matrix into "long" format
 
 ```
@@ -146,8 +169,8 @@ plot(dune_bray_single)
 Like in figure 8.2
 - if we look at the pairs that occur at distances below 0.3
 ```{r, warning=FALSE, message=FALSE}
-library(igraph)
-
+## using graph.adjacency from igraph package
+## to make distance matrix into network
 dune_ch_graph <- graph.adjacency(as.matrix(dune_bray) < 0.30,
                                  mode="undirected",
                                  weighted=TRUE)
@@ -248,7 +271,7 @@ How does single linkage agglomeration compare to:
 
 - intermediate linkage agglomerative clustering
 - object needs to meet criteria to of a proportion of group to join the group
-- so can choose something like proportional link linkage criterio(C0 = 50%)
+- so can choose something like proportional link linkage criteria(C0 = 50%)
 - not sure what command is in R. ??
 
 
@@ -257,9 +280,6 @@ How does single linkage agglomeration compare to:
 
 - either arithmetic or centroid 
 - equal weights or unequal weights
-
-
-##
 
 
 ## UPGMA - unweighted arithmetic average clustering
@@ -377,8 +397,8 @@ dune_KM_cascade$partition
 ```{r}
  groups <-  cutree(dune_bray_single, k=3)
 
-library(indicspecies)
-# Look for the indicator species
+## Look for the indicator species using
+## indicspecies package.
 indval <- multipatt(dune_six_sites, groups)
 summary(indval)
 ```
@@ -393,13 +413,8 @@ heatmap(as.matrix(dune_bray))
 
 ## Multivariate regression tree (MRT)
 
-```{r, echo=FALSE}
-# install.packages("devtools")
-# devtools::install_github("cran/mvpart")
-```
-
 ```{r} 
-library(mvpart)
+## MRT using mvpart package
 data("dune.env")
 dune_env_six <- head(dune.env)
 mvpart(data.matrix(dune_bray) ~., dune_env_six)
@@ -428,8 +443,3 @@ Validation:
 - [vegan clustering tutorial(pdf)](http://cc.oulu.fi/~jarioksa/opetus/metodi/sessio3.pdf)
 - [GUSTA ME pages](http://mb3is.megx.net/gustame/dissimilarity-based-methods/cluster-analysis)
 - [Chapter 4 Borcard et al, 2011](http://ubc.summon.serialssolutions.com/#!/search?bookMark=ePnHCXMw42LgTQStzc4rAe_hSmGAziRCD3MFdlhMDC11zYG1oC4oukHteUsQL4IZev4ShA-65UxUIzwxODU4WBNarpqYmwHb5xywERQon5NBwq8UMruRo5AKPuq5UgE0iKkQxM0g5eYa4uyhW5qUHA8dDok3BTaQQZU-N4MBRBI2ARpfADnfIR7DnfGGFsA-JOhqdWWIFqD6osTclMx08MUeMH3GwO6BMeiWZSWIKuR9THBFwO4CaKMT3CjI5Ciy3fAgMUOoQvYAbFoq3tQSdLweaMocjzcBvT1wAg)
-
-
-
-##
-

@@ -2,6 +2,32 @@
 Julia and Kat  
 22 January 2016  
 
+## Set-up
+
+If you want to run these analyses on your own computer you will need to load the following packages:
+
+
+```r
+## if you need to install these packages you can run this:
+## install.packages(c("vegan", "reshape2", "igraph", "indicspecies", "devtools"))
+library(vegan)
+library(reshape2)
+library(igraph)
+library(indicspecies)
+## mvpart is hosted on github and can be installed
+## using this command: 
+## devtools::install_github("cran/mvpart")
+library(mvpart)
+```
+
+
+We will also briefly use the ```coldis()``` function from Chapter 7.
+
+```r
+source("../Chapter_7/coldiss.R")
+```
+
+
 ## Intro {.build}
 
 - Why use clustering?
@@ -12,7 +38,6 @@ Julia and Kat
 - What you will get out of it
 - different kinds of clustering: can be hard (either you are a or b) or can be fuzzy (you are somewhere between 0 and 1). 
     - we will talk about hard clustering
-
 
 ## Plan for today
 
@@ -50,7 +75,7 @@ Julia and Kat
 
 
 ```r
-library(vegan)
+## load dune dataset from vegan package
 data(dune)
 ```
 
@@ -122,18 +147,18 @@ dune_bray
 Check it out with ```coldiss()``` from last time.
 
 ```r
-source("../Chapter_7/coldiss.R")
+## coldiss() from Chapter 7 
 coldiss(dune_bray)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-4-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-6-1.png) 
 
 
 ## Step 2 : Order D by pairs in lowest to highest distance
 Get distance matrix into sets of pairs (links) of distances (like Fig 8.2)
 
 ```r
-library(reshape2) ## need for melt()
+## melt() from reshape2 package
 melt(as.matrix(dune_bray), varnames = c("row", "col")) # take distance matrix into "long" format
 ```
 
@@ -272,7 +297,7 @@ Dendrogram shows topology, not all possible links
 plot(dune_bray_single)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-9-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-11-1.png) 
 
 
 ## Can also visualize like a graph
@@ -280,15 +305,15 @@ Like in figure 8.2
 - if we look at the pairs that occur at distances below 0.3
 
 ```r
-library(igraph)
-
+## using graph.adjacency from igraph package
+## to make distance matrix into network
 dune_ch_graph <- graph.adjacency(as.matrix(dune_bray) < 0.30,
                                  mode="undirected",
                                  weighted=TRUE)
 plot(dune_ch_graph)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-10-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-12-1.png) 
 
 ## Can also visualize like a graph
 Simplify removes self-loops
@@ -297,7 +322,7 @@ Simplify removes self-loops
 plot(simplify(dune_ch_graph))
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-11-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-13-1.png) 
 
 
 ## Can also visualize like a graph
@@ -310,7 +335,7 @@ dune_ch_graph <- graph.adjacency(as.matrix(dune_bray) < 0.40,
 plot(simplify(dune_ch_graph))
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-12-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-14-1.png) 
 
 ## Can also visualize like a graph
 
@@ -322,7 +347,7 @@ dune_ch_graph <- graph.adjacency(as.matrix(dune_bray) < 0.50,
 plot(simplify(dune_ch_graph))
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-13-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-15-1.png) 
 
 ## Back to dendrogram
 
@@ -331,7 +356,7 @@ plot(simplify(dune_ch_graph))
 plot(dune_bray_single)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-14-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-16-1.png) 
 
 ## How does clustering result compare to original distance matrix?
 
@@ -374,7 +399,7 @@ plot(dune_bray, dune_bray_single_coph, xlab="Bray-Curtis", ylab="Cophenetic dist
 abline(0,1)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-17-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-19-1.png) 
 
 
 ## Comparison: **Complete** linkage
@@ -386,7 +411,7 @@ dune_bray_complete <- hclust(dune_bray, method="complete")
   - useful for identifying discontinuities in the data
   - so object can join cluster only when it is linked to all objects in the cluster
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-19-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-21-1.png) 
 
 ## Cophenetic for complete linkage
 
@@ -405,7 +430,7 @@ plot(dune_bray, dune_bray_single_coph, xlab="Bray-Curtis", ylab="Cophenetic dist
 abline(0,1)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-21-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-23-1.png) 
 
 ## Comparison of agglomerative linkage methods
 
@@ -414,7 +439,7 @@ How does single linkage agglomeration compare to:
 
 - intermediate linkage agglomerative clustering
 - object needs to meet criteria to of a proportion of group to join the group
-- so can choose something like proportional link linkage criterio(C0 = 50%)
+- so can choose something like proportional link linkage criteria(C0 = 50%)
 - not sure what command is in R. ??
 
 
@@ -423,9 +448,6 @@ How does single linkage agglomeration compare to:
 
 - either arithmetic or centroid 
 - equal weights or unequal weights
-
-
-##
 
 
 ## UPGMA - unweighted arithmetic average clustering
@@ -447,7 +469,7 @@ plot(dune_bray_UPGMA, main = "UPGMA")
 plot(dune_bray_single, main = "Single linkage")
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-23-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-25-1.png) 
 
 ## Differences among centroid clustering methods
 Sections 8.5.4 - 8.5.7
@@ -492,7 +514,7 @@ spe.ch.ward <- hclust(dune_bray, method="ward.D") ## also "ward.D2"
 plot(spe.ch.ward)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-24-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-26-1.png) 
 
 
 
@@ -532,7 +554,7 @@ dune_KM_cascade <- cascadeKM(dune_hellinger, inf.gr=2, sup.gr=3, iter=100, crite
 plot(dune_KM_cascade, sortg=TRUE)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-25-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-27-1.png) 
 
 
 ## K-means 
@@ -566,11 +588,11 @@ dune_KM_cascade$partition
 ```
 ##   2 groups 3 groups
 ## 1        1        3
-## 2        1        2
-## 3        1        2
-## 4        1        2
-## 5        2        1
-## 6        2        1
+## 2        1        1
+## 3        1        1
+## 4        1        1
+## 5        2        2
+## 6        2        2
 ```
 
 
@@ -584,8 +606,8 @@ dune_KM_cascade$partition
 ```r
  groups <-  cutree(dune_bray_single, k=3)
 
-library(indicspecies)
-# Look for the indicator species
+## Look for the indicator species using
+## indicspecies package.
 indval <- multipatt(dune_six_sites, groups)
 summary(indval)
 ```
@@ -617,21 +639,19 @@ summary(indval)
 heatmap(as.matrix(dune_bray))
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-28-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-30-1.png) 
 
 ## Multivariate regression tree (MRT)
 
 
-
-
 ```r
-library(mvpart)
+## MRT using mvpart package
 data("dune.env")
 dune_env_six <- head(dune.env)
 mvpart(data.matrix(dune_bray) ~., dune_env_six)
 ```
 
-![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-30-1.png) 
+![](Chapter_8_cluster_analysis_files/figure-html/unnamed-chunk-31-1.png) 
 
 
 ## Cluster Statistics and validation
@@ -656,8 +676,3 @@ Validation:
 - [vegan clustering tutorial(pdf)](http://cc.oulu.fi/~jarioksa/opetus/metodi/sessio3.pdf)
 - [GUSTA ME pages](http://mb3is.megx.net/gustame/dissimilarity-based-methods/cluster-analysis)
 - [Chapter 4 Borcard et al, 2011](http://ubc.summon.serialssolutions.com/#!/search?bookMark=ePnHCXMw42LgTQStzc4rAe_hSmGAziRCD3MFdlhMDC11zYG1oC4oukHteUsQL4IZev4ShA-65UxUIzwxODU4WBNarpqYmwHb5xywERQon5NBwq8UMruRo5AKPuq5UgE0iKkQxM0g5eYa4uyhW5qUHA8dDok3BTaQQZU-N4MBRBI2ARpfADnfIR7DnfGGFsA-JOhqdWWIFqD6osTclMx08MUeMH3GwO6BMeiWZSWIKuR9THBFwO4CaKMT3CjI5Ciy3fAgMUOoQvYAbFoq3tQSdLweaMocjzcBvT1wAg)
-
-
-
-##
-
