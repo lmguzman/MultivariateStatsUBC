@@ -1,0 +1,35 @@
+---
+title: "Ch 10 Interpretation of Ecological Structures"
+author: "Melissa"
+date: "March 4, 2016"
+output: slidy_presentation
+---
+
+# Multidimensional Analysis
+
+- First: Characterize the data matrix in terms of a simplified structure (Clustering or ordination)
+- Second: Interpret the phenomenon underlying the data matrix. 
+
+# Clustering and ordination
+
+- Use the same similarity or distance matrix for cluster and ordination analysis
+- Represent ordination clustering onto ordination diagrams
+- Only use primary connections 
+
+# Direct or indirect comparison?
+
+- Indirect: Original data is transformed via ordination or clustering and then compared via regression or correlation.
+- Direct: Canonycal analysis, matrix correlation, comparison of dendograms. 
+
+# Objectives of interpretation
+
+- Explanation (or discrimination) 
+- Forecasting
+- Prediction 
+
+# Exlaining (discrimination) (table 10.1)
+
+Main objective: data exploration not hypothesis testing
+
+
+
