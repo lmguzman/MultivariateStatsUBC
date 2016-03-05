@@ -26,14 +26,6 @@ Melissa
 <li>Second: Interpret the phenomenon underlying the data matrix.</li>
 </ul>
 </div>
-<div id="objectives-of-interpretation" class="slide section level1">
-<h1>Objectives of interpretation</h1>
-<ul>
-<li>Explanation (or discrimination)</li>
-<li>Forecasting</li>
-<li>Prediction</li>
-</ul>
-</div>
 <div id="clustering-and-ordination" class="slide section level1">
 <h1>Clustering and ordination</h1>
 <ul>
@@ -45,7 +37,207 @@ Melissa
 <div id="direct-or-indirect-comparison" class="slide section level1">
 <h1>Direct or indirect comparison?</h1>
 <ul>
-<li>Indirect:</li>
+<li>Indirect: Original data is transformed via ordination or clustering and then compared via regression or correlation.</li>
+<li>Direct: Canonycal analysis, matrix correlation, comparison of dendograms.</li>
+</ul>
+</div>
+<div id="objectives-of-interpretation" class="slide section level1">
+<h1>Objectives of interpretation</h1>
+<ul>
+<li><p>Explanation (or discrimination): data exploration not hypothesis testing</p></li>
+<li><p>Forecasting (or correlative) models: extend into the future or to different situations among descriptors that have been quatified for a given data set. <strong>Does not allow for extrapolation beyond the observed range of the explanatory variables</strong></p></li>
+<li><p>Predictive models: when the relationships are assumed to be causal and to describe a process</p></li>
+</ul>
+</div>
+<div id="explaining-discrimination-table-10.1" class="slide section level1">
+<h1>Explaining (discrimination) (table 10.1)</h1>
+<p>Univariate descriptors or indirect comparison:</p>
+<ul>
+<li>Explained descriptor is: Quantitative and semiquantitative
+<ul>
+<li>Measure dependence between descriptors:
+<ul>
+<li>Pearson r, coefficient of multiple determination <span class="math inline">\(R^2\)</span>, coefficient of concordance</li>
+</ul></li>
+<li>Interpret the structure of a descriptor:
+<ul>
+<li>Partial pearson r</li>
+</ul></li>
+<li>Estimation of dependence between descriptors of the sites and descriptors of the species
+<ul>
+<li><strong>4th corner problem</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level1">
+
+<ul>
+<li>Explained descriptor is: Qualitative
+<ul>
+<li>Explanatory descriptors are quantitative:
+<ul>
+<li>Discriminant analysis</li>
+</ul></li>
+<li>Explanatory descriptors are qualitative:
+<ul>
+<li>Multidimensional contingency table, discrete discriminant analysis</li>
+</ul></li>
+<li>Explanatory descriptors are mixed:
+<ul>
+<li>Logistic regression</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="explaining-discrimination-table-10.1---part-2" class="slide section level1">
+<h1>Explaining (discrimination) (table 10.1) - Part 2</h1>
+<p>Multivariate descriptors:</p>
+<ul>
+<li>Direct comparison:
+<ul>
+<li>Quantitative descriptors explained by quantitative descriptors:
+<ul>
+<li>Redundancy analysis (ch 11)</li>
+<li>Canonical correspondance analysis (ch 11)</li>
+</ul></li>
+<li>Response and explanatory tables are transformed into resemblance matrices
+<ul>
+<li>Matrix comparison / Mantel test</li>
+</ul></li>
+<li>Classifications for both tables
+<ul>
+<li>Dendogram comparison</li>
+</ul></li>
+</ul></li>
+<li>Indirect comparison:
+<ul>
+<li>Ordination -&gt; each axis is treated the same way as a single qualitative descriptor</li>
+<li>Clustering -&gt; each partition is treated as a qualitative descriptor</li>
+</ul></li>
+</ul>
+</div>
+<div id="forecasting-table-10.2" class="slide section level1">
+<h1>Forecasting (table 10.2)</h1>
+<p>Univariate descriptors or indirect comparison:</p>
+<ul>
+<li>Response descriptor is: Quantitative
+<ul>
+<li>Explanatory variables are quantitative:
+<ul>
+<li>Independent variables: Multiple linear regression, non-linear regression</li>
+<li>High correlation: ridge regression, regression on principal components</li>
+</ul></li>
+</ul></li>
+<li>Response descriptor is: Qualitative, explanatory is quantitative or semiquantitative
+<ul>
+<li>Response two categories:
+<ul>
+<li>Logistic regression</li>
+</ul></li>
+<li>Response has 3 or more categories:
+<ul>
+<li>Identification functions in discrimnant analysis (11.5)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="forecasting-table-10.2---part-2" class="slide section level1">
+<h1>Forecasting (table 10.2) - Part 2</h1>
+<p>Multivariate descriptors:</p>
+<ul>
+<li>Direct comparison
+<ul>
+<li>Response + explanatory variables quantitative:
+<ul>
+<li>Redundancy analysis, canonical correspondence analysis (ch 11)</li>
+</ul></li>
+<li>Forecasting a resemblance matrix or cophenetic matrix using other explanatory resemblance matrices:
+<ul>
+<li>Multiple regression on resemblance matrices (10.5)</li>
+</ul></li>
+</ul></li>
+<li>Indirect comparison:
+<ul>
+<li>Ordination -&gt; each axis is treated the same way as a single qualitative descriptor</li>
+<li>Clustering -&gt; each partition is treated as a qualitative descriptor</li>
+</ul></li>
+</ul>
+</div>
+<div id="predicting-table-10.3" class="slide section level1">
+<h1>Predicting (table 10.3)</h1>
+<p>Causal relationships are stated as hypotheses for modelling, can be validates through experiments.</p>
+<ul>
+<li>Causal relationships among descriptors given a hypothesis
+<ul>
+<li>Quantitative descriptors:</li>
+<li>Causal models using correlations (ch 4), path analysis</li>
+<li>Qualitative descriptors:</li>
+<li>Logit and log-linear models (ch 6)</li>
+<li>Modelling from resemblance matrices:</li>
+<li>Causal modelling on resemblance matrices</li>
+</ul></li>
+<li>Hidden variables are assumed to cause the observed structure of the descriptors:
+<ul>
+<li>Confirmatory factor analysis</li>
+</ul></li>
+</ul>
+</div>
+<div id="regression---model-i-vs-model-ii" class="slide section level1">
+<h1>Regression - model I vs model II</h1>
+<p>Model I</p>
+<ul>
+<li><p>Explanatory variable (x) is controlled or measured without error</p></li>
+<li><p>For any given value of x, the y’s are independently and normally distributed</p></li>
+</ul>
+<p>-&gt; Use normal regression!</p>
+</div>
+<div class="slide section level1">
+
+<p>Model II</p>
+<ul>
+<li>When both reponse and explanatory variables are measured with error</li>
+<li>If purpose is forecasting or prediction
+<ul>
+<li>Use normal regression!</li>
+</ul></li>
+<li>If your main purpose is to estimate parameters
+<ul>
+<li>Major axis regression:
+<ul>
+<li>Estimate the regression line on the first principal component of the scatter of points.</li>
+<li>Useful when both variables are in the same physical units or dimensionless</li>
+</ul></li>
+<li>Standard major axis
+<ul>
+<li>Standardize the variables</li>
+<li>Compute MA</li>
+<li>Backtransform ** Should always computer a pearson correlation coefficient and test for significance before computing the SMA, if r is not significantly different from zero, don’t do SMA**</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div class="slide section level1">
+
+<p>Multiple linear regression - Adding multiple explanatory variables</p>
+<p>Multivariate linear regression - Multiple response variables at the same time</p>
+<ul>
+<li>Uncorrelated explanatory variables or only interested in forecasting
+<ul>
+<li>extension of simple linear regression</li>
+</ul></li>
+<li>Correlated explanatory variables
+<ul>
+<li>Regression on principal components</li>
+</ul></li>
+</ul>
+</div>
+<div id="path-analysis" class="slide section level1">
+<h1>Path analysis</h1>
+<ul>
+<li><p>Extension of multiple linear regression</p></li>
+<li><p>Decomposition and interpretation of linear relationships among a small set of descriptors</p></li>
+<li><p>Researchers must determine a causal order among the variables</p></li>
 </ul>
 </div>
 

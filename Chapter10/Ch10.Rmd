@@ -23,13 +23,141 @@ output: slidy_presentation
 
 # Objectives of interpretation
 
-- Explanation (or discrimination) 
-- Forecasting
-- Prediction 
+- Explanation (or discrimination): data exploration not hypothesis testing
 
-# Exlaining (discrimination) (table 10.1)
+- Forecasting (or correlative) models: extend into the future or to different situations among descriptors that have been quatified for a given data set. **Does not allow for extrapolation beyond the observed range of the explanatory variables**
 
-Main objective: data exploration not hypothesis testing
+- Predictive models: when the relationships are assumed to be causal and to describe a process
 
+# Explaining (discrimination) (table 10.1)
 
+Univariate descriptors or indirect comparison: 
+
+- Explained descriptor is: Quantitative and semiquantitative 
+    - Measure dependence between descriptors:
+        - Pearson r, coefficient of multiple determination $R^2$, coefficient of concordance
+    - Interpret the structure of a descriptor:
+        - Partial pearson r
+    - Estimation of dependence between descriptors of the sites and descriptors of the species
+        - **4th corner problem** 
+
+---
+
+- Explained descriptor is: Qualitative 
+    - Explanatory descriptors are quantitative: 
+        - Discriminant analysis
+    - Explanatory descriptors are qualitative: 
+        - Multidimensional contingency table, discrete discriminant analysis
+    - Explanatory descriptors are mixed:
+        - Logistic regression 
+  
+# Explaining (discrimination) (table 10.1) - Part 2
+
+Multivariate descriptors: 
+
+- Direct comparison:
+    - Quantitative descriptors explained by quantitative descriptors:
+        - Redundancy analysis (ch 11)
+        - Canonical correspondance analysis (ch 11)
+    - Response and explanatory tables are transformed into resemblance matrices
+        - Matrix comparison / Mantel test
+    - Classifications for both tables
+        - Dendogram comparison
+- Indirect comparison:
+    - Ordination -> each axis is treated the same way as a single qualitative descriptor
+    - Clustering -> each partition is treated as a qualitative descriptor 
+
+# Forecasting (table 10.2)
+
+Univariate descriptors or indirect comparison: 
+
+- Response descriptor is: Quantitative 
+    - Explanatory variables are quantitative:
+        - Independent variables: Multiple linear regression, non-linear regression
+        - High correlation: ridge regression, regression on principal components
+- Response descriptor is: Qualitative, explanatory is quantitative or semiquantitative
+    - Response two categories: 
+        - Logistic regression
+    - Response has 3 or more categories:
+        - Identification functions in discrimnant analysis (11.5)
+        
+
+# Forecasting (table 10.2) - Part 2
+
+Multivariate descriptors:
+
+- Direct comparison
+    - Response + explanatory variables quantitative: 
+        - Redundancy analysis, canonical correspondence analysis (ch 11)
+    - Forecasting a resemblance matrix or cophenetic matrix using other explanatory resemblance matrices: 
+        - Multiple regression on resemblance matrices (10.5)
+        
+- Indirect comparison:
+    - Ordination -> each axis is treated the same way as a single qualitative descriptor
+    - Clustering -> each partition is treated as a qualitative descriptor
+    
+# Predicting (table 10.3)
+
+Causal relationships are stated as hypotheses for modelling, can be validates through experiments. 
+
+- Causal relationships among descriptors given a hypothesis
+    - Quantitative descriptors:
+      - Causal models using correlations (ch 4), path analysis 
+    - Qualitative descriptors:
+      - Logit and log-linear models (ch 6)
+    - Modelling from resemblance matrices:
+      - Causal modelling on resemblance matrices
+- Hidden variables are assumed to cause the observed structure of the descriptors:
+    - Confirmatory factor analysis 
+    
+# Regression - model I vs model II
+
+Model I 
+
+- Explanatory variable (x) is controlled or measured without error
+
+- For any given value of x, the y's are independently and normally distributed
+
+-> Use normal regression!
+
+---
+
+Model II
+
+- When both reponse and explanatory variables are measured with error
+  - If purpose is forecasting or prediction 
+      - Use normal regression!
+  - If your main purpose is to estimate parameters 
+      - Major axis regression:
+        - Estimate the regression line on the first principal component of the scatter of points. 
+        - Useful when both variables are in the same physical units or dimensionless
+      - Standard major axis
+        - Standardize the variables
+        - Compute MA
+        - Backtransform 
+      ** Should always computer a pearson correlation coefficient and test for significance before computing the SMA, if r is not significantly different from zero, don't do SMA**
+
+---
+
+Multiple linear regression
+- Adding multiple explanatory variables
+
+Multivariate linear regression
+- Multiple response variables at the same time
+
+- Uncorrelated explanatory variables or only interested in forecasting
+    - extension of simple linear regression
+    
+- Correlated explanatory variables 
+    - Regression on principal components
+
+# Path analysis
+
+- Extension of multiple linear regression
+
+- Decomposition and interpretation of linear relationships among a small set of descriptors
+
+- Researchers must determine a causal order among the variables 
+
+ 
 
