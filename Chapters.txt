@@ -1,41 +1,42 @@
 ##Chapters
 
-Jan - 8
+Jan - 15
 #Ecological resemblance
 ### from with R: association and matrices
 Andrew
-MelissaS
+Melissa
 
-Jan - 15
+Jan - 22
 #Cluster analysis
 Julia
 Kat
 
-Jan - 22
-#Ordination in reduced space
-Coreen
-Santiago
-
-Jan - 29
-#Interpretation of ecological structures
-Jenny
-Melissa
-
 Feb - 5
-#Canonical analysis 
-Manny
-Phil
+#Ordination in reduced space
+Sean
+Joey
 
 Feb - 12 
+#Interpretation of ecological structures
+Melissa
+Kat
+
+Mar - 11
+#Canonical analysis 
+Phil
+Lauren
+
+Mar - 18
 #Ecological data series
 Rachel 
 Andrew Cook
 
-Feb - 19 
+Mar - 25
 #Spatial analysis
-Coreen
+Kat
+Rachel
 
-Feb - 26 
+April - 8
 #Multiscale analysis 
 Melissa
-
+Andrew Cook
