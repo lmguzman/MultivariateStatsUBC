@@ -1,0 +1,46 @@
+---
+title: "Ch 14 and final summary"
+author: "Melissa Guzman"
+date: "April 13, 2016"
+output: slidy_presentation
+---
+
+
+## Key Concepts
+
+- Similarity/ Dissimilarity matrix
+- Correlation
+- Regression
+- Partial correlation
+- Partial regression
+- Qualitative
+- Quantitative
+- Semiquantitative
+- Multinormal distribution
+- Clustering
+	- Single Linkage
+	- Partitioning by K-means
+	- Hierarchical
+- Ordination
+	- PCA
+	- PCoA
+	- MDS
+	- CA
+- Q mode analysis
+- R mode analysis 
+- Objects
+- Descriptors
+- Path analysis
+- Matrix comparison
+	- Mantel test
+	- Procrustes analysis
+- 4th corner problem
+- Canonical analysis
+- Time series
+	- Detecting cycles
+	- Trend extractions
+- Correlograms
+- Trend surface analysis
+- dbMEM
+- Variation partitioning/ Partial canonical analysis
+
