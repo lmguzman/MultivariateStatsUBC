@@ -8,15 +8,16 @@ output: slidy_presentation
 
 ## Key Concepts
 
-- Similarity/ Dissimilarity matrix
-- Correlation
-- Regression
-- Partial correlation
-- Partial regression
-- Qualitative
-- Quantitative
-- Semiquantitative
-- Multinormal distribution
+- Similarity/ Dissimilarity matrix: A square matrix of association among objects or descriptors
+- Correlation: Aims at establishing the interdependence between two random variables
+- Regression: Fits a straight line through the set of n points in such a way that makes the sum of squared residuals of the model as small as possible
+- Multiple correlation: Measures the intensity of the relationship between a response variable and a linear combination of several explanatory variables. 
+- Multiple regression: An extension of simple linear regression. It is used when we want to predict the value of a variable based on the value of two or more other variables. 
+- Partial correlation: Measures the intensity of the relationship between two variables, while taking into account their relationships to other variables
+- Partial regression: A way of estimating how much of the variation of the response variable can be attributed exclusively to one set of factors, once the effect of the other set has been taken into account. 
+- Qualitative: Categorical data. Eg: male vs female
+- Quantitative: Continuous axis of real numbers. Eg: length
+- Semiquantitative: Small number of ordered classes. Eg: small, medium, large
 - Clustering
 	- Single Linkage
 	- Partitioning by K-means
@@ -26,13 +27,14 @@ output: slidy_presentation
 	- PCoA
 	- MDS
 	- CA
-- Q mode analysis
-- R mode analysis 
-- Objects
-- Descriptors
-- Path analysis
-- Matrix comparison
+- Q mode analysis: Association matrix among objects
+- R mode analysis: Association matriz among descriptors
+- Objects: Sites, sampling units, subjects defined a priori. 
+- Descriptors: Also called variable, attributes or characters used to describe or compare the objects. ie: species
+- Path analysis: An extension of multiple linear regression which allows the decomposition and interpretation of linear relationships among a small number of descriptors. Used to test alternative hypothesis. 
+- Matrix comparison: To perform direct comparison when the response descriptors form a multivariable dataset. 
 	- Mantel test
+	- ANOSIM test
 	- Procrustes analysis
 - 4th corner problem
 - Canonical analysis
@@ -43,4 +45,6 @@ output: slidy_presentation
 - Trend surface analysis
 - dbMEM
 - Variation partitioning/ Partial canonical analysis
+
+
 
