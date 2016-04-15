@@ -5,6 +5,28 @@ date: "April 13, 2016"
 output: slidy_presentation
 ---
 
+## Distance-based Moran Eigenvector Maps (dbMEM)
+
+- Calculate a distance (dissimilarity) matrix with spatial coordinates <- using euclidean distances. 
+- Truncate the matrix with a threshold (Threshold based con clustering algorithm)
+- Apply PCoA
+- Eigenvalues are equal to Moran's I coefficients of spatial correlations 
+- Only eigenvalues with positive in Moran's I are used to model the spatial correlation of the data 
+- Eigenfunctions can be used in linear models the same way as the polynomials of geographic coordinates
+
+## General Form
+
+- Construct a binary connectivity matrix B with 1 when distance smaller (closer) than threshold and 0 greater (further) than threshold
+- Construct an edge weighting matrix, based on the difficulty of exchange between points
+- Compute the product
+- Compute PCoA of truncated matrix -> principal coordinates are the eigenfunctions
+
+## Multiscale ordination
+
+- Are environmental variables responsible for the spatial correlation observed in the response matrix? At which distance classes is that effect important? is it for all scales?
+
+
+
 
 ## Key Concepts
 
@@ -32,12 +54,12 @@ output: slidy_presentation
 - Objects: Sites, sampling units, subjects defined a priori. 
 - Descriptors: Also called variable, attributes or characters used to describe or compare the objects. ie: species
 - Path analysis: An extension of multiple linear regression which allows the decomposition and interpretation of linear relationships among a small number of descriptors. Used to test alternative hypothesis. 
-- Matrix comparison: To perform direct comparison when the response descriptors form a multivariable dataset. 
-	- Mantel test
-	- ANOSIM test
-	- Procrustes analysis
-- 4th corner problem
-- Canonical analysis
+- Matrix comparison: To perform direct comparison when the response descriptors form a multivariable dataset. Uses the similarity matrices.
+	- Mantel test: Calculates the "correlation coefficient" between two matrices. If you have a similarity matrix for species composition, and another for environmental data for the same sites, or geographic distances among sites. (Matrices are the same size)
+	- ANOSIM test: (could also use PERMANOVA - Prob more robust?) Test if there are significant differences in community composition between two groups. Analogous to an ANOVA for community composotion. 
+	- Procrustes analysis: Ordination technique to find a compromise ordination for two data matrices concerning the same objects. Minimizes the SS distances between corresponding sites in the matrix. 
+- 4th corner problem: How do the biological and behavioral characteristics of species determine their relative locations in an ecosystem? - You have 3 matrices: species x site, environment x site and species x behaviour/functional traits. You want to estimate a environment x behaviour/functional traits matrix. How do we associate behavioural/functional traits to habitat characteristics? -> estimates the parameters and test for significance. 
+- Canonical analysis: Allows to perform a direct comparison of two data matrices. 
 - Time series
 	- Detecting cycles
 	- Trend extractions
@@ -45,6 +67,8 @@ output: slidy_presentation
 - Trend surface analysis
 - dbMEM
 - Variation partitioning/ Partial canonical analysis
-
+- Descriptive analysis: Method available for explaining the structure of one or several ecological descriptors. The purpose here is data exploration, not hypothesis testing.
+- Forecasting analysis: Extend into the future or to different situations, structuralr elationships among descripts that have been quantifed for a given data set. Also called correlative models.
+- Predictive analysis: When the relationships are assumed to be causal and to describe a process. 
 
 
