@@ -1,0 +1,50 @@
+---
+title: "Ch 14 and final summary"
+author: "Melissa Guzman"
+date: "April 13, 2016"
+output: slidy_presentation
+---
+
+
+## Key Concepts
+
+- Similarity/ Dissimilarity matrix: A square matrix of association among objects or descriptors
+- Correlation: Aims at establishing the interdependence between two random variables
+- Regression: Fits a straight line through the set of n points in such a way that makes the sum of squared residuals of the model as small as possible
+- Multiple correlation: Measures the intensity of the relationship between a response variable and a linear combination of several explanatory variables. 
+- Multiple regression: An extension of simple linear regression. It is used when we want to predict the value of a variable based on the value of two or more other variables. 
+- Partial correlation: Measures the intensity of the relationship between two variables, while taking into account their relationships to other variables
+- Partial regression: A way of estimating how much of the variation of the response variable can be attributed exclusively to one set of factors, once the effect of the other set has been taken into account. 
+- Qualitative: Categorical data. Eg: male vs female
+- Quantitative: Continuous axis of real numbers. Eg: length
+- Semiquantitative: Small number of ordered classes. Eg: small, medium, large
+- Clustering: Partitions a collection of objects. 
+	- Single Linkage: Type of hierarchical agglomerative clustering. 
+	- Partitioning by K-means: Determines a partition into groups or clusters determined by the user. 
+	- Hierarchical agglomerative: Clusters are formed hierarchically, starting from the most similar objects and then relaxing the similarity criterion. 
+- Ordination: Characterizes the main trends of variation of the objects with respect to all descriptors. Start from the scaling of the objects in full-dimensional space and attempt to represent them in a few dimensions while preserving the distance relationship among the objects. 
+	- PCA: *Linear* combinations of the original descriptors
+	- PCoA: This method obtains an euclidean representation from all types of variables, even sets of variables of mixed levels of presicion. Principal coordinates are also functions of the original variables. 
+	- MDS:The priority is to represent the objects in a small and specified number of dimensions, preserving the order of relationships among objects. It is not limited to euclidean distance matrices. Not an eigenvector method => axes are arbitrary. 
+	- CA: Uses the $X^2$ distance which is a coefficient that excludes double zeroes. Frequently used on species abundance data. Preserves the $X^2$ distance between the rows or columns of the contingency table. 
+- Q mode analysis: Association matrix among objects
+- R mode analysis: Association matriz among descriptors
+- Objects: Sites, sampling units, subjects defined a priori. 
+- Descriptors: Also called variable, attributes or characters used to describe or compare the objects. ie: species
+- Path analysis: An extension of multiple linear regression which allows the decomposition and interpretation of linear relationships among a small number of descriptors. Used to test alternative hypothesis. 
+- Matrix comparison: To perform direct comparison when the response descriptors form a multivariable dataset. 
+	- Mantel test
+	- ANOSIM test
+	- Procrustes analysis
+- 4th corner problem
+- Canonical analysis
+- Time series
+	- Detecting cycles
+	- Trend extractions
+- Correlograms
+- Trend surface analysis
+- dbMEM
+- Variation partitioning/ Partial canonical analysis
+
+
+
