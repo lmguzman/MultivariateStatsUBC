@@ -1,7 +1,6 @@
 ---
-title: "Ch 14 and final summary"
-author: "Melissa Guzman"
-date: "April 13, 2016"
+title: "Ch 14 and Final summary"
+date: "April 15, 2016"
 output: slidy_presentation
 ---
 
@@ -21,12 +20,9 @@ output: slidy_presentation
 - Compute the product
 - Compute PCoA of truncated matrix -> principal coordinates are the eigenfunctions
 
-## Multiscale ordination
+## Multiscale ordination MSO
 
 - Are environmental variables responsible for the spatial correlation observed in the response matrix? At which distance classes is that effect important? is it for all scales?
-
-
-
 
 ## Key Concepts
 
@@ -53,22 +49,33 @@ output: slidy_presentation
 - R mode analysis: Association matriz among descriptors
 - Objects: Sites, sampling units, subjects defined a priori. 
 - Descriptors: Also called variable, attributes or characters used to describe or compare the objects. ie: species
+- Descriptive analysis: Method available for explaining the structure of one or several ecological descriptors. The purpose here is data exploration, not hypothesis testing.
+- Forecasting analysis: Extend into the future or to different situations, structuralr elationships among descripts that have been quantifed for a given data set. Also called correlative models.
+- Predictive analysis: When the relationships are assumed to be causal and to describe a process. 
 - Path analysis: An extension of multiple linear regression which allows the decomposition and interpretation of linear relationships among a small number of descriptors. Used to test alternative hypothesis. 
 - Matrix comparison: To perform direct comparison when the response descriptors form a multivariable dataset. Uses the similarity matrices.
 	- Mantel test: Calculates the "correlation coefficient" between two matrices. If you have a similarity matrix for species composition, and another for environmental data for the same sites, or geographic distances among sites. (Matrices are the same size)
 	- ANOSIM test: (could also use PERMANOVA - Prob more robust?) Test if there are significant differences in community composition between two groups. Analogous to an ANOVA for community composotion. 
 	- Procrustes analysis: Ordination technique to find a compromise ordination for two data matrices concerning the same objects. Minimizes the SS distances between corresponding sites in the matrix. 
 - 4th corner problem: How do the biological and behavioral characteristics of species determine their relative locations in an ecosystem? - You have 3 matrices: species x site, environment x site and species x behaviour/functional traits. You want to estimate a environment x behaviour/functional traits matrix. How do we associate behavioural/functional traits to habitat characteristics? -> estimates the parameters and test for significance. 
-- Canonical analysis: Allows to perform a direct comparison of two data matrices. 
+- Canonical analysis: Allows to perform a direct comparison of two data matrices. Brings out all the variance in matrix Y that is related to matrix X. <- Ordination of Y under constraint of X. Combines the concepts of ordination and regression. 
+  - RDA: Direct extension of multiple regression to the modelling of multivariate response data. Can also be seen as an extension of principal component analysis. Preserves the euclidean distance among objects.
+  - CCA: Similar to RDA but preserved the $X^2$ distance (as in correspondence analysis) among objects.
+  - CCorA: Direct extension of linear correlation.
+  - Canonical discriminant analysis: Objects are divited into k groups described by a qualitative descriptor. 
+  - Partial RDA/CCA: The extension of partial linear regression. Control the effect of matrix W on Y when analysing the effect of Y on a set of variables X. 
 - Time series
 	- Detecting cycles
 	- Trend extractions
-- Correlograms
-- Trend surface analysis
-- dbMEM
-- Variation partitioning/ Partial canonical analysis
-- Descriptive analysis: Method available for explaining the structure of one or several ecological descriptors. The purpose here is data exploration, not hypothesis testing.
-- Forecasting analysis: Extend into the future or to different situations, structuralr elationships among descripts that have been quantifed for a given data set. Also called correlative models.
-- Predictive analysis: When the relationships are assumed to be causal and to describe a process. 
+  - Correlograms: The coefficients of autocorrelation (or autocovariance) are plotted as a function of the lag (k)
+  - Peridogram: Harmonic analysis
+  - Periodic variability: Spectral analysis- correlograms and peridograms lead to spectral analysis. 
+- Spatial analysis 
+  - Correlograms: Coefficients of correlation via Moran's I or Mantel correlograms
+  - Moran's I: Measure of spatial autocorrelation
+  - Trend surface analysis: Produces smoothed maps. Express observed values as a polynomial function of the greographic coordinates X and Y of the sapling sites. 
+- Variation partitioning/ Partial canonical analysis: 3 data sets, Y with response variables (species composition), X with explanatory environmental variables and W with explanatory spatial variables. 
+- dbMEM: Captures the variation in geographic coordinates via eigenfunctions. Can replace trend surface analysis
+
 
 
