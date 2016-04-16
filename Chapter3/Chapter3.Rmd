@@ -1,0 +1,219 @@
+---
+title: "Chapter 3 - Dimensional Analysis In Ecology"
+output: pdf_document
+---
+
+# Fundamental principles
+
+- Dimensional analysis can be used to simplify equations into dimensionless variables. 
+- This type of analysis only works on dimensionally homogeous equations -> have the same dimensions. 
+
+# Example:
+
+Let's estimate the drag experimenced by an object immersed in a current.
+
+Assumptions:
+- The immersed object is a smooth sphere.
+- The velocity of the current V is constant. 
+
+The drag force F is a function of:
+
+- velocity $V$ \
+- diameter of the sphere $D$ \
+- density of water $\rho$ \
+- dynamic viscosity $\eta$ \
+
+
+$F = f(V,D,\rho,\eta)$
+
+
+*Dimensional analysis allows one to find the form of the equation that relates F to the variables identified as governing the drag*
+
+Some of these variables can be combined to produce dimensionless products:
+
+Reynold's Number = 
+
+\begin{equation}
+Re = \frac{V L \rho}{\eta}
+\end{equation}
+
+and
+
+Newton Number = 
+\begin{equation}
+Ne = \frac{F}{L^{2} V^{2} \rho}
+\end{equation}
+
+Each dimensionless product contains one exclusive variable. 
+
+These dimensionless products can be related in unitless relationships. For example, relating Newton's and Reynold's number you end up with an equation for the drag coefficient:
+\begin{equation}
+C_{x} = \frac{8}{\pi} f(Re)
+\end{equation}
+This equation is valis for any density or dynamic viscocity of any fluid under consideration. 
+
+Both of these numbers are dimensionless products.
+
+**Dimensionless product**: A sufficient condition for an equation to be dimensionally homogenous is that it could be resudec to an equation combining dimensionless products -> the dimensions of all the variables cancel each other. 
+
+**$\Pi$ Theorem**: If an equation is dimensionally homogenous, it can be resudec to a relationship among the members of a complete set of dimensionless products. 
+
+This was relatively easy with the relationship of five variables, but as the number of variables increases, it becomes harder. Here we present a systematic way to calcualte the dimensionless products between a several variables. 
+
+
+Doing the same exaple in a systematic way:
+
+
+\bordermatrix{ ~ &  F & \eta & \rho & L & V \cr
+              M  &  1 & 1    &  1   & 0 & 0 \cr
+              L  &  1 & -1   & -3   & 1 & 1 \cr
+              T  &  -2 & -1  &  0   & 0 & -1 \cr}
+
+
+Note that the variables are the columns and the units for each variable are the rows. The numbers inside the matrix are the exponents of each variable. 
+So for example, the units of Force $F$ are $ML/T^2$.
+
+In each product, the exponents given to the variables must be such that the result is dimensionless. 
+
+According to $\Pi$ theorem then:
+
+\begin{equation}
+\Pi = F^{x_{1}} \eta^{x_{2}} \rho^{x_{3}} L^{x_{4}} V^{x_{5}}
+\end{equation}
+
+\[ 
+\begin{pmatrix}
+1 & 1    &  1   & 0 & 0 \\
+1 & -1   & -3   & 1 & 1 \\
+-2 & -1  &  0   & 0 & -1 \\
+\end{pmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+x_{4} \\
+x_{5} \\
+\end{pmatrix}
+= 0
+\]
+
+Following matrix multiplication, we end up with a series of equations:
+
+\begin{equation}
+x_{1} + x_{2} +x_{3} = 0 \\
+\end{equation}
+\begin{equation}
+x_{1} - x_{2} -3x_{3} + x_{4} + x_{5} = 0 \\
+\end{equation}
+\begin{equation}
+-2x_{1} - x_{2} - x_{5} = 0
+\end{equation}
+
+Then what we need to do is to solve these equations. However, they are a set of indeterminate equations since we have 3 equations and 5 unknowns. 
+
+We can find the general solution interms of $x_{1}$ and $x_{2}$
+
+
+\[ 
+\begin{pmatrix}
+1 & 1     \\
+1 & -1    \\
+-2 & -1    \\
+\end{pmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+\end{pmatrix}
+= -
+\begin{pmatrix}
+ 1   & 0 & 0 \\
+ -3   & 1 & 1 \\
+ 0   & 0 & -1\\
+\end{pmatrix}
+\begin{pmatrix}
+x_{3} \\
+x_{4} \\
+x_{5} \\
+\end{pmatrix}
+\]
+
+Using matrix inversion:
+
+\[ 
+{-}\begin{pmatrix}
+ 1   & 0 & 0 \\
+ -3   & 1 & 1 \\
+ 0   & 0 & -1\\
+\end{pmatrix} ^{-1}
+\begin{pmatrix}
+1 & 1     \\
+1 & -1    \\
+-2 & -1    \\
+\end{pmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+\end{pmatrix}
+= 
+\begin{pmatrix}
+x_{3} \\
+x_{4} \\
+x_{5} \\
+\end{pmatrix}
+\]
+
+
+\[ 
+\begin{pmatrix}
+-1 & -1     \\
+-2 & -1    \\
+-2 & -1    \\
+\end{pmatrix}
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+\end{pmatrix}
+= 
+\begin{pmatrix}
+x_{3} \\
+x_{4} \\
+x_{5} \\
+\end{pmatrix}
+\]
+
+Then the simplest approach is to set one unkown to 0 and the other to 1. 
+
+
+\bordermatrix{ ~ &  F & \eta & \rho & L & V \cr
+              ~ &  x_{1} & x_{2} & x_{3} & x_{4} & x_{5} \cr
+              \Pi_{1}  &  1 & 0    &  -1   & -2 &-2 \cr
+             \Pi_{2}  &  0 & 1   & -1   & -1 & -1 \cr}
+              
+
+Then the dimensionless products are:
+
+
+\begin{equation}
+ \Pi_{1} = \frac{F}{L^{2} V^{2} \rho}
+\end{equation}
+= Newton Number 
+
+and 
+
+
+\begin{equation}
+Re = \frac{\eta}{VL\rho}
+\end{equation}
+
+= inverse of Reynold's Number 
+
+
+# Conclusions
+
+1. Because the left-hand part of the solution matrix is an identity matrix $(I)$ the dimensionless products $\Pi$ are independent
+2. When partitioning the dimensional matrix, one must isolate the right hand side a matrix that can be inverted (ie. a matrix whose determinand is non-zero)
+3. The number of dimensionless products in the complete set is equal to the number of variables isolated on the left-hand side of the dimensional matrix. -> The number of dimensionless producs = total number of variables - rank of the dimensional matrix
+4. When the last $n$ columns of a dimensional matrix of order $r$ do not lead to a non-zero determinant, the columns of the matrix must be rearranged so as to obtain a non-zero determinant. 
+
+
+

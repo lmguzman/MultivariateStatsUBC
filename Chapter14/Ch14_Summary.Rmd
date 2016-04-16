@@ -1,0 +1,26 @@
+---
+title: "Ch 14 and Final summary"
+date: "April 15, 2016"
+output: slidy_presentation
+---
+
+## Distance-based Moran Eigenvector Maps (dbMEM)
+
+- Calculate a distance (dissimilarity) matrix with spatial coordinates <- using euclidean distances. 
+- Truncate the matrix with a threshold (Threshold based con clustering algorithm)
+- Apply PCoA
+- Eigenvalues are equal to Moran's I coefficients of spatial correlations 
+- Only eigenvalues with positive in Moran's I are used to model the spatial correlation of the data 
+- Eigenfunctions can be used in linear models the same way as the polynomials of geographic coordinates
+
+## General Form
+
+- Construct a binary connectivity matrix B with 1 when distance smaller (closer) than threshold and 0 greater (further) than threshold
+- Construct an edge weighting matrix, based on the difficulty of exchange between points
+- Compute the product
+- Compute PCoA of truncated matrix -> principal coordinates are the eigenfunctions
+
+## Multiscale ordination MSO
+
+- Are environmental variables responsible for the spatial correlation observed in the response matrix? At which distance classes is that effect important? is it for all scales?
+

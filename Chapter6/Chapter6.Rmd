@@ -1,0 +1,234 @@
+---
+title: "Chapter 6 - Multidimensional Qualitative Data"
+output: pdf_document
+---
+
+#Contingency tables#
+
+The comparison of qualitative descriptors is based on contingency tables. 
+
+In multiway tables, the hypothesses testes are often quite complex because they take into account interactions among descriptors. 
+
+```{r, include=TRUE}
+
+Money <- factor(c("Broken","Broken","Ok","Broken","Ok","Ok"))
+Edu <- factor(c("PhD","PhD","PhD","MSc","MSc","MSc"))
+ct <- table(Money,Edu)
+ct 
+t (ct) #Transpose
+mosaicplot(ct) # Mosaicplot
+
+### Silly data 
+x <- c(rep("Ok",0.3*500),rep("Broken",0.7*500))
+y <- c(rep("PhD",0.4*500),rep("MSc",0.6*500))
+Money <- sample(x) 
+Edu <- sample(y) 
+mytable <- table(Money,Edu)
+mytable
+
+margin.table(mytable, 1) # x frequencies (summed over y) 
+margin.table(mytable, 2) # y frequencies (summed over x)
+
+prop.table(mytable, 1) # row percentages (Probability of Broken or ok)
+prop.table(mytable, 2) # column percentages (Probability of PhD or MSc)
+prop.table(mytable) # cell percentages (Probability of broken/ok being PhD or MSc))
+
+### 3-Way Frequency Table 
+z <- c(rep("happy",0.6*500),rep("unhappy",0.4*500))
+Happi <- sample(z) 
+
+mytable2 <- ftable(Happi,Money,Edu) #3 way table 
+mytable2
+
+mosaicplot(mytable2,shade=T) #Standarized resioduals
+
+library (vcd)
+cotabplot(mytable2, panel = cotab_coindep, shade = TRUE, legend = FALSE, type = "assoc")
+
+```
+
+#Entropy#
+
+One main problem is measuring the amount of information contained in each descriptor, and the amount of information that the two descriptors have in common. When the descriptors are qualitative, the order of the information is not important.
+In information systems, entropy and information are synonymous. Entropy then is the average number of binary questoins that are required in assigning each object to its correct state. Therfore, how much information is gained by asking binary questions and answering them after observing the objects is equal to the degree of undertainty. 
+
+```{r, include=TRUE}
+# From http://stackoverflow.com/questions/27254550/calculating-entropy
+info <- function(CLASS.FREQ){
+  freq.class <- CLASS.FREQ
+  info <- 0
+  for(i in 1:length(freq.class)){
+    if(freq.class[[i]] != 0){ # zero check in class
+      entropy <- -sum(freq.class[[i]] * log2(freq.class[[i]]))  #I calculate the entropy for each class  here
+    }else{ 
+      entropy <- 0
+    } 
+    info <- info + entropy # sum up entropy from all classes
+  }
+  return(info)
+}
+
+freqs <- table(Edu)/length(Edu)
+freqs2 <- table(Money)/length(Money) 
+freqs3 <- table(Happi)/length(Happi)
+
+#Calculate entropy: 
+info(freqs)  # (Bits)
+info(freqs2) 
+-sum(freqs * log2(freqs)) 
+library (entropy)
+entropy.empirical(freqs, unit="log2") 
+
+#With package entropy
+freqs.empirical(freqs) #Edu
+entropy(freqs, method="ML") # Also "MM", "Jeffreys", "Laplace", "SG", "minimax", "CS", "NSB", "shrink"
+entropy.empirical(freqs, unit=c("log"))  #Nats
+entropy.empirical(freqs, unit=c("log2"))  #Bits
+entropy.empirical(freqs, unit=c("log10")) #Logits
+
+# Kullback-Leiber (KL) divergence 
+KL.plugin (freqs, freqs2)  #from Happi to Money. 
+KL.plugin (freqs2, freqs3)  #from Money to Edu
+KL.plugin (freqs, freqs3)  #from Happi to Edu
+```
+
+Also, diversity indexes such as the Shannon's index are a measure of entropy of the system. 
+
+
+## LogLinear Hierarchical##
+
+```{r}
+library(MASS)
+mytable <- xtabs(~ Happi + Money + Edu)  #3-way contingency table 
+
+# Mutual Independence: 
+loglm(~ Happi + Money + Edu, mytable) #Ho: Pairwise independent.
+
+# Partial Independence:
+loglm(~ Happi + Money + Edu + Money * Edu, mytable)  
+# Ho: Happiness is partially independent of Money and Education
+# (i.e., Happi is independent of the composite variable MoneyEdu).
+
+#Conditional Independence: 
+loglm(~Happi+Money+Edu+ Happi*Edu + Money*Edu, mytable) 
+#Ho: Happiness is independent of Money, given Edu.
+
+# Ho: No Three-Way Interaction
+loglm(~Happi+Money+Edu+Happi*Money+Happi*Edu+Money*Edu, mytable)
+```
+
+
+#Species Diversity#
+install.packages('vegan')
+```{r}
+
+library(vegan)
+
+#dune data sets
+data(dune) #Species data
+data(dune.env) #Environmental data
+?dune
+
+#Explore
+View(dune)
+colSums(dune) #Species total abundances
+rowSums(dune) #Sites total abundances
+
+#Distribution of species abundances
+barplot(sort(colSums(dune)))
+
+
+### 1. Entropy of order a = 0  ###
+
+# 1.1 simple richness
+S <- specnumber(dune)
+barplot(sort(S))
+
+plot(x = dune.env$Management, y = S)
+
+#BUT: incorrect to compare the diversities of sampling units having different sizes
+
+
+# 1.2 Rarefied sp. richness (expected number of species in a standardized sampling size)
+rar <- rarefy(dune, sample = min(rowSums(dune)))
+barplot(sort(rar))
+
+plot(x = dune.env$Management, y = rar)
+
+# 1.3 Species accumulation curves (to assess sufficient sampling)
+spac<-specaccum(dune)
+plot(spac, ci.type = "polygon", ci.col = "green") 
+
+# 1.4 Rarefied species accum curves
+spac.rar <- specaccum(dune, method = "rarefaction")
+plot(spac.rar, ci.type = "polygon", ci.col = "yellow", add=TRUE)
+
+#method = "rarefaction" finds the expected species richness and its 
+#standard deviation by sampling individuals instead of sites. 
+#It achieves this by applying function rarefy() with number of individuals 
+#corresponding to average number of individuals per site.
+
+
+
+### 2. Entropy of order a = 1  ###
+
+# 2.1 Shannon entropy - considers both species richness and shape of distribution
+# UNCERTAINTY about the identity of an organism chosen at random in a sampling unit
+shan <- diversity(dune, index = "shannon")
+barplot(sort(shan))
+
+# H = 0 when only one species
+# H is low when few dominant species
+
+### 3. Entropy of order a = 2 
+# equation: 1 - (PROBABILITY that two species belong to the same species) 
+# LEAST sensitive to rare species
+
+# 3.1 Simpson's
+
+simp <- diversity(dune, index = "simpson")
+hist(simp, breaks = 15)
+barplot(sort(simp))
+#Sensitive to abundance of dominant species
+
+# 3.2 Inverse Simpson's
+invsimp <- diversity(dune, index = "invsimpson")
+hist(invsimp, breaks = 12)
+barplot(sort(invsimp))
+#Less sensitive to abundance of dominant species
+
+
+
+### 4. Evenness ###
+
+# 4.1 Pielou's evenness J
+
+J <- shan/log(specnumber(dune))
+
+
+
+### 5. Beta diversity (alpha = diversity within sites, gamma = overall diversity)
+
+# 5.1 Simplest Beta diversity
+beta1 <- ncol(dune)/mean(specnumber(dune)) - 1 
+#problematic because ncol increases with the number of sites even when sites
+#are all subsets of the same community.
+
+# 5.2 Pairwise beta diversity
+beta2 <- vegdist(dune, binary=TRUE)
+mean(beta2)
+# from pairwise comparison of sites.
+
+# 5.3 Alpha, beta, gamma diversity all together using any diversity index
+adipart(dune, index = "simpson")
+
+# MORE COMPLEX: Dispersion-based beta diversity (cluster and many others)
+z <- betadiver(dune, "z")
+beta.z <- betadisper(z, group = dune.env$Management)
+
+plot(beta.z)
+TukeyHSD(beta.z) # test differences in dispersion (diversity)
+
+```
+
+
